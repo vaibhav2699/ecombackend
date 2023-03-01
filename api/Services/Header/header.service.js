@@ -15,7 +15,7 @@ exports.create = async (body) => {
     if (headerData) {
       return {
         success: true,
-        message: "header image added successfully ",
+        message: "Header image added successfully ",
         data: headerData,
       };
     } else {
@@ -107,6 +107,33 @@ exports.list = async (where, datum) => {
     return {
       success: false,
       message: error,
+    };
+  }
+};
+
+exports.softDelete = async (params_id) => {
+  try {
+    const result = await HeaderModal.findByIdAndUpdate(params_id, {
+      isActive: false,
+    });
+    if (result) {
+      return {
+        success: true,
+        message: "Banner deleted successfully",
+        data: result,
+      };
+    } else {
+      return {
+        success: true,
+        message: "",
+        data: null,
+      };
+    }
+  } catch (error) {
+    return {
+      success: false,
+      message: error,
+      data: null,
     };
   }
 };

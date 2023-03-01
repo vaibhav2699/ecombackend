@@ -43,7 +43,8 @@ exports.create = async (userWishlist) => {
         await WishlistModal.findByIdAndUpdate(existUser._id, existUser);
         return {
           success: true,
-          message: "Products Pushed successfully",
+          message: "Product  Successfully added to wishlist",
+          // "Products Pushed successfully",
           data: existUser,
         };
       }

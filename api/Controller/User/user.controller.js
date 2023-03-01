@@ -104,17 +104,24 @@ router.post("/forgotPassword", async (req, res) => {
       const { successMail, messageMail } = await email.sendForPasswordUpdate(
         userData
       );
-      if (successMail.success) {
-        res
-          .status(200)
-          .json({ success: successMail.success, message: messageMail });
-      } else {
-        res
-          .status(400)
-          .json({ success: successMail.success, message: messageMail });
-      }
+      res
+        .status(200)
+        .json({ success: successMail.success, message: messageMail });
+      // if (success.success) {
+      //   console.log("3");
+      //   res
+      //     .status(200)
+      //     .json({ success: successMail.success, message: messageMail });
+      // } else {
+      // res
+      //   .status(400)
+      //   .json({ success: successMail.success, message: messageMail });
+      // }
     } else {
       res.status(400).json({ success, message, data });
+      res
+        .status(400)
+        .json({ success: successMail.success, message: messageMail });
     }
   } catch (error) {
     res.status(400).json({ message: error });
@@ -206,6 +213,7 @@ router.post("/signin", async (req, res) => {
         lastName: data.lastName,
         email: data.email,
         token: token,
+        isActive: data.isActive
       };
       return res.status(200).json({ success, message, data: body });
     } else {

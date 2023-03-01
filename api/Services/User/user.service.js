@@ -24,7 +24,9 @@ exports.create = async (file, user) => {
       email: user.email,
       password: encryptedPassword,
       phoneNumber: user.phoneNumber,
-      userImg: file.path,
+      userImg: "/img/user/UserImg.png"
+      // file.path,
+      
     });
     // const info = new User(user);
 
